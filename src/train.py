@@ -19,14 +19,18 @@ df=pd.read_csv(r'C:\Users\hp\Documents\ml1\data\heart.csv')
 
 # Data Preprocessing
 # Encode categorical variables
+
+
 label_encoders = {}
 for col in ['Sex', 'ChestPainType', 'RestingECG', 'ExerciseAngina', 'ST_Slope']:
     le = LabelEncoder()
     df[col] = le.fit_transform(df[col])
     label_encoders[col] = le
 
-with open(r'C:\Users\hp\Documents\ml1\models\encoder.pickle', 'wb') as handle:
-    pickle.dump(le,handle)
+with open(r'C:\Users\hp\Documents\ml1\models\encoders.pickle', 'wb') as handle:
+    pickle.dump(label_encoders, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+
 
 
 # Feature Selection
